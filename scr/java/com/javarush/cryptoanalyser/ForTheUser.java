@@ -36,7 +36,7 @@ public class ForTheUser {
         System.out.println(choice);
         System.out.println(EXIT);
         startMainMenu();
-    }
+    }//Тестовый коммит
 
     public static void startMainMenu()//нужен выход из программы
     {
