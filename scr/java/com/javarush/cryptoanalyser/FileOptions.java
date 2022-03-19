@@ -23,8 +23,8 @@ public class FileOptions {
                 }
             }
         } catch (Exception e) {
-            System.out.println(FILE_NOT_FOUND_EXEPTION);
-            CaesarEncryption.getOriginalFileLocationAddress();
+            System.out.println("Ошибка " + e);
+            CaesarEncryption.doCaesarCipher();
         }
         return textFile;
     }

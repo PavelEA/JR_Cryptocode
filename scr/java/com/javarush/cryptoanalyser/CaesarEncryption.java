@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class CaesarEncryption {
     private static final char[] ALPHABET = {'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з',
             'и', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
-            'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '};
+            'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '}; // сделать один на всех?
 
     public static ArrayList<Character> setCaesarCipher(ArrayList<Character> textFile, int offset) {
         ArrayList<Character> fileToWrite = new ArrayList<>(textFile);
@@ -33,40 +33,29 @@ public class CaesarEncryption {
     }
     public static void doCaesarCipher(){
         writeCaesarCipher(setCaesarCipher(FileOptions.readFiles(getOriginalFileLocationAddress()),getOffset()),getCiphertextFileAddress());
-    }
-    public static int getOffset()// доработать цикл с рекурсией
-    {
+    }//при вводе не правильного ориг пути просит по 2 раза сдвиг и расшифровку?
+
+    public static int getOffset(){
         System.out.println("Введите необходимый для шифра сдвиг: ");
         Scanner scanner = new Scanner(System.in);
         int offset = 0;
-        try {while (scanner.hasNext()){
-            offset = scanner.nextInt();
-            if (!true){
-                throw new Exception();
-            }else {
-                break;
-            }
-        }
-
+        try {
+                offset = scanner.nextInt();
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не число. Попробуйте вновь " + e);
             getOffset();
         }
-
         return offset;
     }
 
-    public static String getOriginalFileLocationAddress() // убрать рекурсив чтение
-    {
+    public static String getOriginalFileLocationAddress(){
         Scanner scannerForOrg = new Scanner(System.in);
         System.out.println("Введите адрес оригинального файла: ");
         String originalFileLocationAddress = " ";
         try {
             originalFileLocationAddress = scannerForOrg.nextLine();
-            Path path = Paths.get(originalFileLocationAddress);
-            if (!Files.exists(path)) {
-                throw new Exception();
-            }
+            File file = new File(originalFileLocationAddress).getAbsoluteFile();
+            if (!file.exists()) {throw new Exception();}
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не корректный адрес. Попробуйте вновь " + e);
             getOriginalFileLocationAddress();
@@ -74,21 +63,16 @@ public class CaesarEncryption {
         return originalFileLocationAddress;
     }
 
-    public static String getCiphertextFileAddress()//проверка на совпадение с путем оригинального + убрать рекурсивный вызов чтения
-    {
+    public static String getCiphertextFileAddress(){
         Scanner scannerForCip = new Scanner(System.in);
         System.out.println("Введите адрес для сохранения зашифрованного файла: ");
         String ciphertextFileAddress = " ";
         try {
             ciphertextFileAddress = scannerForCip.nextLine();
-            Path path1 = Paths.get(ciphertextFileAddress);
-            if (!Files.exists(path1)) {
+            File file1 = new File(ciphertextFileAddress).getAbsoluteFile();
+            if (!file1.exists()) {
                 throw new Exception();
             }
-           /*if (FileOptions.equals(dataCollectionString(),ciphertextFileAddress)){
-                System.out.println("Адрес для записи не может совпадать с адресом оригинального файла. Введите пожалуйста другой. ");
-            }*/
-
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не корректный адрес для записи. Попробуйте вновь" + e);
             getCiphertextFileAddress();
