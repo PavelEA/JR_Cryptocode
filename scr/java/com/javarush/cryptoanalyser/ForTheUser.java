@@ -4,6 +4,7 @@ package com.javarush.cryptoanalyser;
 import java.util.Scanner;
 
 public class ForTheUser {
+
     private static final String WELCOME_PART = " Добро пожаловать! Вы можете выбрать один из представленных режимов шифрования:  ";
     private static final String TYPES_OF_CIPHERS = " 1.Шифровка текста по стилю Цезаря \n 2.Расшифровка текста по стилю Цезаря \n 3.Расшифровка текста с помощью brute force \n " +
             "4.Расшифровка с помощью статистического анализа текста \n";
