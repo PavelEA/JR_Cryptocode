@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class CaesarEncryption {
     private static final char[] ALPHABET = {'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з',
