@@ -10,24 +10,30 @@ public class DecryptionByCaesarMethod {
             'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '};
 
 
-    public static void doDecryption()//зависает на уровене ввода шифра
+    public static void doDecryption()//при попытке сломать запрашивает по 2 раза сдвиг и адрес для файла
     {
     FileOptions.writeFiles(setDecryptionCaesar(читаемФайл(),getOffsetС()),getOriginalFileLocationAddressС());
 
 
     }
+
     public static ArrayList<Character> setDecryptionCaesar(ArrayList<Character> textFile, int offset) {
         ArrayList<Character> fileToWrite = new ArrayList<>(textFile);
         for (int i = 0; i < textFile.size(); i++) {
             char a = Character.toLowerCase(textFile.get(i));
-            for (int j = ALPHABET.length-1; j > 0; j--) {
+            for (int j = ALPHABET.length - 1; j > 0; j--) {
                 if (a == ALPHABET[j]) {
-                    if (j - offset <= 0){
-                    j = ALPHABET.length-1- offset;
-                        fileToWrite.set(i, ALPHABET[j]);
-                }else {
-                        fileToWrite.set(i, ALPHABET[j - offset]);
+                    int bias;
+                    if (offset > 0) {
+                        bias = (j - offset) % ALPHABET.length;
+                    } else {
+                        bias = (j + offset) % ALPHABET.length;
                     }
+                    if (bias < 0) {
+                        bias = bias + ALPHABET.length;
+
+                    }
+                    fileToWrite.set(i, ALPHABET[bias]);
                 }
             }
         }
@@ -45,7 +51,7 @@ public class DecryptionByCaesarMethod {
     public static String getCiphertextFileAddressС()//переместить в FileOption!!
     {
         Scanner scannerForCip = new Scanner(System.in);
-        System.out.println("Введите адрес зашифрованного файла: ");
+        System.out.println("Введите адрес зашифрованного файла: ");// убрать в класс
         String ciphertextFileAddress = " ";
         try {
             ciphertextFileAddress = scannerForCip.nextLine();
