@@ -5,16 +5,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DecryptionByCaesarMethod {
-    private static final char[] ALPHABET = {'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з',
-            'и', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
-            'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '};
-
+    public static final char[] ALPHABET = FileOptions.getALPHABET();
 
     public static void doDecryption()//при попытке сломать запрашивает по 2 раза сдвиг и адрес для файла
     {
-    FileOptions.writeFiles(setDecryptionCaesar(читаемФайл(),getOffsetС()),getOriginalFileLocationAddressС());
-
-
+    FileOptions.writeFiles(setDecryptionCaesar(readFile(),getOffsetС()),getOriginalFileLocationAddressС());
     }
 
     public static ArrayList<Character> setDecryptionCaesar(ArrayList<Character> textFile, int offset) {
@@ -39,19 +34,16 @@ public class DecryptionByCaesarMethod {
         }
         return fileToWrite;
     }
-    /*public static void writeDecryptionCaesar(ArrayList<Character> fileToWrite, String pathToWrite){
-        FileOptions.writeFiles(fileToWrite,pathToWrite);
-    }*/
 
-    public static ArrayList<Character> читаемФайл(){
+    public static ArrayList<Character> readFile(){
         return FileOptions.readFiles(getCiphertextFileAddressС());
     }
 
 
-    public static String getCiphertextFileAddressС()//переместить в FileOption!!
+    public static String getCiphertextFileAddressС()//нужно ли перемещать в FileOption?
     {
         Scanner scannerForCip = new Scanner(System.in);
-        System.out.println("Введите адрес зашифрованного файла: ");// убрать в класс
+        System.out.println("Введите адрес зашифрованного файла: ");
         String ciphertextFileAddress = " ";
         try {
             ciphertextFileAddress = scannerForCip.nextLine();
@@ -66,9 +58,10 @@ public class DecryptionByCaesarMethod {
 
         return ciphertextFileAddress;
     }
-    public static int getOffsetС()//переместить в FileOption!!
+
+    public static int getOffsetС()
     {
-        System.out.println("Введите необходимый для шифра сдвиг111: ");
+        System.out.println("Введите необходимый для шифра сдвиг: ");
         Scanner scanner = new Scanner(System.in);
         int offset = 0;
         try {
@@ -79,7 +72,8 @@ public class DecryptionByCaesarMethod {
         }
         return offset;
     }
-    public static String getOriginalFileLocationAddressС()//переместить в файл опшен!!
+
+    public static String getOriginalFileLocationAddressС()
     {
         Scanner scannerForOrg = new Scanner(System.in);
         System.out.println("Введите адрес файла для записи: ");
@@ -94,12 +88,5 @@ public class DecryptionByCaesarMethod {
         }
         return originalFileLocationAddress;
     }
-    public static char[] reverseArray(char[] arr){
-        for (int i = 0; i < arr.length/2; i++) {
-            char a = arr[i];
-            arr[i] = arr[arr.length-i-1];
-            arr[arr.length - i - 1] = a;
-        }
-        return arr;
-    }
+
 }
