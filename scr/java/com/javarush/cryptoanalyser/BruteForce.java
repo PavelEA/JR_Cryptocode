@@ -1,5 +1,8 @@
 package com.javarush.cryptoanalyser;
 
+import sun.security.util.ArrayUtil;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,7 +11,7 @@ public class BruteForce {
     public static final char[] ALPHABET = FileOptions.getALPHABET();
 
     public static void doBruteForce(){
-       bruteForceStepOne(readFiles(getRepresentativeFileAddress()));
+        FileOptions.writeFiles(bruteForceStepOne(readFiles(getRepresentativeFileAddress())), getOriginalFileLocationAddress());
     }
 
 
@@ -20,7 +23,7 @@ public class BruteForce {
         return FileOptions.readFiles(text);
     }
 
-    public static void bruteForceStepOne(ArrayList<Character> arrayFromFile){
+    public static ArrayList<Character> bruteForceStepOne(ArrayList<Character> arrayFromFile){
         /*HashMap<Character,Integer> mapForWrite = new HashMap<>();
         for (Character character : arrayFromFile) {
             char a = Character.toLowerCase(character);
@@ -41,9 +44,11 @@ public class BruteForce {
             for (Character s : arrayFromFile){//с этим ключом прохожу по всему листу
                 char[] chars = Character.toChars(s);//записываю значения листа в массив ====(массив с оригинал текстом)
                 for (int i = 0; i < chars.length; i++) {//прохожу по массиву
-                    for (char c : ALPHABET) {// прохожу по алфавиту
-                        if (chars[i] == c) { // если индекс буквы из массива символов = индексу букве алфавита
-                            int bias = ((int) c - key) % ALPHABET.length;
+                    char a = chars[i];
+                    for (int j = 0; j < ALPHABET.length; j++) {// прохожу по алфавиту
+                        char c = ALPHABET[j];
+                        if (c==a) { // если сиволы равны
+                            int bias = (j - key) % ALPHABET.length;
                             if (bias < 0) {
                                 bias = bias + ALPHABET.length;
                                 chars[i] = ALPHABET[bias];
@@ -61,7 +66,10 @@ public class BruteForce {
 
 
             }
-        someTextArray.add((char)Integer.parseInt("\n"));} // после каждого варианта сделали перенос строки
+            System.out.println(someTextArray);
+        }
+        return someTextArray;
+
 
     }
 
