@@ -13,7 +13,7 @@ public class BruteForce extends FileOptions {
 
     public static void doBruteForce() {
         FileOptions.writeFiles(hackBruteForce(readFiles(getRepresentativeFileAddress())), getOriginalFileLocationAddress());
-        //читаем файл -> хакаем -> пишем
+
     }
 
     public static ArrayList<Character> hackBruteForce(ArrayList<Character> arrayFromFile) {
@@ -73,7 +73,11 @@ public class BruteForce extends FileOptions {
         ArrayList<String> arrayString = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(text))) {
             while (bufferedReader.ready()) {
-                arrayString.add(bufferedReader.readLine());
+                String [] arrays = bufferedReader.readLine().split(" ");
+                for (int i = 0; i < arrays.length; i++) {
+                    arrayString.add(i,arrays[i]);
+                }
+
             }
 
         } catch (Exception e) {

@@ -23,10 +23,16 @@ public class KeyVerification {
 
     public static ArrayList<String> findResultBruteForce(ArrayList<String>a1, ArrayList<String> b1){
         ArrayList<String> result = new ArrayList<>();
-        for (int i = 0; i < a1.size() ; i++) {
-        if (a1.equals(b1)){
-            result.add(a1.get(i));
-        }}
+        for (String s : a1) {
+            for (int i = 0; i < b1.size(); i++) {
+                if (s.equalsIgnoreCase(b1.get(i))) {
+                    result.add(s);
+                }
+            }
+        }
+
+
+        System.out.println(result);
         return result;
     }
     public static void writeResult(ArrayList<String> textForWrite, String addressForWrite) {

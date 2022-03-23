@@ -74,7 +74,7 @@ public class FileOptions {
 
     public static String getCiphertextFileAddress(){
         Scanner scannerForCip = new Scanner(System.in);
-
+        System.out.println("Введите адрес зашифрованного файла");
         String ciphertextFileAddress = " ";
         try {
             ciphertextFileAddress = scannerForCip.nextLine();
