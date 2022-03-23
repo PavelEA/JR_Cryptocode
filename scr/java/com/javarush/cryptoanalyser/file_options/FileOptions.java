@@ -10,11 +10,11 @@ public class FileOptions {
 
     public static char[] getALPHABET() {return ALPHABET;}
 
-    private static final String FILE_NOT_FOUND_EXEPTION = "Файл указаному адресу не существует или вы ввели не корректный адрес";
+    private static final String FILE_NOT_FOUND_EXCEPTION = "Файл указаному адресу не существует или вы ввели не корректный адрес";
     private static final String OUTPUT_FILE_NOT_FOUND = "Файл для записи не существует. Попробуйте еще раз";
 
-    public static String getFileNotFoundExeption() {
-        return FILE_NOT_FOUND_EXEPTION;
+    public static String getFileNotFoundException() {
+        return FILE_NOT_FOUND_EXCEPTION;
     }
 
     public static String getOutputFileNotFound() {
@@ -31,7 +31,7 @@ public class FileOptions {
                 }
             }
         } catch (Exception e) {
-            System.out.println(FILE_NOT_FOUND_EXEPTION);
+            System.out.println(FILE_NOT_FOUND_EXCEPTION);
         }
         return textFile;
     }
@@ -53,7 +53,7 @@ public class FileOptions {
         try {
             offset = scanner.nextInt();
         } catch (Exception e) {
-            System.out.println("Ошибка ввода. Вы ввели не число. Попробуйте вновь " + e);
+            System.out.println("Ошибка ввода. Вы ввели не число. Попробуйте вновь ");
             getOffset();
         }
         return offset;

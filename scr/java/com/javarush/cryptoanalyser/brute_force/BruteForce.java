@@ -35,8 +35,6 @@ public class BruteForce extends KeyVerification {
                 }
                 for (char newChar : chars) {
                     someTextArray.add(newChar);
-                    for (int i = 0; i < chars.length; i++) {
-                    }
                 }
             }
             someTextArray.add('\n');
@@ -55,7 +53,7 @@ public class BruteForce extends KeyVerification {
                 }
             }
         } catch (Exception e) {
-            System.out.println(getFileNotFoundExeption());
+            System.out.println(getFileNotFoundException());
         }
         return arrayString;
     }

@@ -6,12 +6,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DecryptionByCaesarMethod {
-    public static final char[] ALPHABET = FileOptions.getALPHABET();
+public class DecryptionByCaesarMethod extends FileOptions {
+    public static final char[] ALPHABET = getALPHABET();
 
     public static void doDecryption()//при попытке сломать запрашивает по 2 раза сдвиг и адрес для файла
     {
-    FileOptions.writeFiles(setDecryptionCaesar(readFile(),getOffsetС()),getOriginalFileLocationAddressС());
+    writeFiles(setDecryptionCaesar(readFile(),getOffset()),getOriginalFileLocationAddressС());
     }
 
     public static ArrayList<Character> setDecryptionCaesar(ArrayList<Character> textFile, int offset) {
@@ -38,42 +38,10 @@ public class DecryptionByCaesarMethod {
     }
 
     public static ArrayList<Character> readFile(){
-        return FileOptions.readFiles(getCiphertextFileAddressС());
+        return FileOptions.readFiles(getCiphertextFileAddress());
     }
 
 
-    public static String getCiphertextFileAddressС()//нужно ли перемещать в FileOption?
-    {
-        Scanner scannerForCip = new Scanner(System.in);
-        System.out.println("Введите адрес зашифрованного файла: ");
-        String ciphertextFileAddress = " ";
-        try {
-            ciphertextFileAddress = scannerForCip.nextLine();
-            File file1 = new File(ciphertextFileAddress).getAbsoluteFile();
-            if (!file1.exists()) {
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            System.out.println("Ошибка ввода. Вы ввели не корректный адрес зашифрованного файла. Попробуйте вновь" + e);
-            getCiphertextFileAddressС();
-        }
-
-        return ciphertextFileAddress;
-    }
-
-    public static int getOffsetС()
-    {
-        System.out.println("Введите необходимый для шифра сдвиг: ");
-        Scanner scanner = new Scanner(System.in);
-        int offset = 0;
-        try {
-            offset = scanner.nextInt();
-        } catch (Exception e) {
-            System.out.println("Ошибка ввода. Вы ввели не число. Попробуйте вновь " + e);
-            getOffsetС();
-        }
-        return offset;
-    }
 
     public static String getOriginalFileLocationAddressС()
     {
