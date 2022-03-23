@@ -1,11 +1,5 @@
 package com.javarush.cryptoanalyser.file_options;
-
-
-import sun.java2d.pipe.AAShapePipe;
-
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +12,14 @@ public class FileOptions {
 
     private static final String FILE_NOT_FOUND_EXEPTION = "Файл указаному адресу не существует или вы ввели не корректный адрес";
     private static final String OUTPUT_FILE_NOT_FOUND = "Файл для записи не существует. Попробуйте еще раз";
+
+    public static String getFileNotFoundExeption() {
+        return FILE_NOT_FOUND_EXEPTION;
+    }
+
+    public static String getOutputFileNotFound() {
+        return OUTPUT_FILE_NOT_FOUND;
+    }
 
     public static ArrayList<Character> readFiles(String file) {
         ArrayList<Character> textFile = new ArrayList<>();
@@ -75,6 +77,23 @@ public class FileOptions {
     public static String getCiphertextFileAddress(){
         Scanner scannerForCip = new Scanner(System.in);
         System.out.println("Введите адрес зашифрованного файла");
+        String ciphertextFileAddress = " ";
+        try {
+            ciphertextFileAddress = scannerForCip.nextLine();
+            File file1 = new File(ciphertextFileAddress).getAbsoluteFile();
+            if (!file1.exists()) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            System.out.println("Ошибка ввода. Вы ввели не корректный адрес для записи. Попробуйте вновь" + e);
+            getCiphertextFileAddress();
+        }
+
+        return ciphertextFileAddress;
+
+    }public static String getCiphertextFileAddressTwo(){
+        Scanner scannerForCip = new Scanner(System.in);
+        System.out.println("Введите адрес с результатами подбора зашифрованного файла");
         String ciphertextFileAddress = " ";
         try {
             ciphertextFileAddress = scannerForCip.nextLine();

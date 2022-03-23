@@ -1,12 +1,13 @@
 package com.javarush.cryptoanalyser.brute_force;
+import com.javarush.cryptoanalyser.file_options.FileOptions;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class KeyVerification {
+public class KeyVerification extends FileOptions {
 
-    public static String getRepresentativeFileAddress() { // читаю файл с примером
+    public static String getRepresentativeFileAddress() {
         Scanner scannerForRepresent = new Scanner(System.in);
         System.out.println("Введите адрес файла с примером текста от автора: ");
         String representativeFileAddress = " ";
@@ -21,25 +22,21 @@ public class KeyVerification {
         return representativeFileAddress;
     }
 
-    public static ArrayList<String> findResultBruteForce(ArrayList<String>a1, ArrayList<String> b1){
+    public static ArrayList<String> findResultBruteForce(ArrayList<String> cipherList, ArrayList<String> authorsList){
         ArrayList<String> result = new ArrayList<>();
-        for (String s : a1) {
-            for (int i = 0; i < b1.size(); i++) {
-                if (s.equalsIgnoreCase(b1.get(i))) {
+        for (String s : cipherList) {
+            for (String value : authorsList) {
+                if (s.equalsIgnoreCase(value)) {
                     result.add(s);
                 }
             }
         }
-
-
-        System.out.println(result);
         return result;
     }
     public static void writeResult(ArrayList<String> textForWrite, String addressForWrite) {
-
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(addressForWrite))) {
-            for (String c : textForWrite) {
-                bufferedWriter.write(c);
+            for (String s : textForWrite) {
+                bufferedWriter.write(s);
             }
         } catch (Exception e) {
             System.out.println("Файл для записи не существует. Попробуйте еще раз");
@@ -48,17 +45,16 @@ public class KeyVerification {
     }
     public static String getResultAddress() {
         Scanner scannerForRepresent = new Scanner(System.in);
-        System.out.println(" Адрес куда выдать результат ");
+        System.out.println("Адрес куда выдать результат ");
         String resultAddress = " ";
         try {
             resultAddress = scannerForRepresent.nextLine();
             File file = new File(resultAddress).getAbsoluteFile();
             if (!file.exists()) {throw new Exception();}
         } catch (Exception e) {
-            System.out.println("Ошибка ввода. Вы ввели не корректный адрес. Попробуйте вновь " + e);
+            System.out.println("Ошибка ввода. Вы ввели не корректный адрес. Попробуйте вновь ");
             getResultAddress();
         }
         return resultAddress;
     }
-
 }

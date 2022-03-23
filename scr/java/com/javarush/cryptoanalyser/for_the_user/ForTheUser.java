@@ -1,6 +1,4 @@
 package com.javarush.cryptoanalyser.for_the_user;
-
-
 import com.javarush.cryptoanalyser.caesar_encryption.CaesarEncryption;
 import com.javarush.cryptoanalyser.decryption_by_caesar_method.DecryptionByCaesarMethod;
 import com.javarush.cryptoanalyser.brute_force.BruteForce;
@@ -61,7 +59,8 @@ public class ForTheUser {
                     break;
                 case 3:
                     System.out.println(MODE_THIRD);
-                    BruteForce.doBruteForce();
+                    BruteForce.doBruteForceStepOne();
+                    BruteForce.doBruteForceStepTwo();
                     System.out.println(SUCCESS);
                     break;
                 case 4:
