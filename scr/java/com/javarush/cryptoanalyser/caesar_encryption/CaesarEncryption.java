@@ -3,12 +3,11 @@ import com.javarush.cryptoanalyser.file_options.FileOptions;
 import java.util.*;
 
 public class CaesarEncryption extends FileOptions {
-    public static final char[] ALPHABET = getALPHABET();
 
     public static void doCaesarCipher()
     {
         writeFiles(setCaesarCipher(readFiles(getOriginalFileLocationAddress()),getOffset()),getCiphertextFileAddress());
-    }//при вводе не правильного ориг пути просит по 2 раза сдвиг и расшифровку(проверяет, ссылается на первый ввод + не пишет во второй файл
+    }//1. Не получилось реализовать перенос строки. Проверку на символ '\n' не проходил.
 
     public static ArrayList<Character> setCaesarCipher(ArrayList<Character> textFile, int offset)
     {

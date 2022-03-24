@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileOptions {
-    private static final char[] ALPHABET = {'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з',
+    public static final char[] ALPHABET = {'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з',
             'и', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
             'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '};
-
-    public static char[] getALPHABET() {return ALPHABET;}
 
     private static final String FILE_NOT_FOUND_EXCEPTION = "Файл указаному адресу не существует или вы ввели не корректный адрес";
     private static final String OUTPUT_FILE_NOT_FOUND = "Файл для записи не существует. Попробуйте еще раз";
@@ -54,7 +52,7 @@ public class FileOptions {
             offset = scanner.nextInt();
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не число. Попробуйте вновь ");
-            getOffset();
+            offset = getOffset();
         }
         return offset;
     }
@@ -69,7 +67,7 @@ public class FileOptions {
             if (!file.exists()) {throw new Exception();}
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не корректный адрес. Попробуйте вновь " + e);
-            getOriginalFileLocationAddress();
+            originalFileLocationAddress = getOriginalFileLocationAddress();
         }
         return originalFileLocationAddress;
     }
@@ -86,7 +84,7 @@ public class FileOptions {
             }
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не корректный адрес для записи. Попробуйте вновь" + e);
-            getCiphertextFileAddress();
+            ciphertextFileAddress = getCiphertextFileAddress();
         }
 
         return ciphertextFileAddress;
@@ -103,7 +101,7 @@ public class FileOptions {
             }
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не корректный адрес для записи. Попробуйте вновь" + e);
-            getCiphertextFileAddress();
+            ciphertextFileAddress = getCiphertextFileAddress();
         }
 
         return ciphertextFileAddress;
@@ -120,7 +118,7 @@ public class FileOptions {
             }
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не корректный адрес для записи. Попробуйте вновь" + e);
-            getCiphertextFileAddress();
+            ciphertextFileAddress = getCiphertextFileAddress();
         }
 
         return ciphertextFileAddress;
@@ -136,7 +134,7 @@ public class FileOptions {
             if (!file.exists()) {throw new Exception();}
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не корректный адрес. Попробуйте вновь " + e);
-            getRepresentativeFileAddress();
+            representativeFileAddress = getRepresentativeFileAddress();
         }
         return representativeFileAddress;
     }

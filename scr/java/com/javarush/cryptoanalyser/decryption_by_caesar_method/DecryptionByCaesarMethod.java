@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DecryptionByCaesarMethod extends FileOptions {
-    public static final char[] ALPHABET = getALPHABET();
 
-    public static void doDecryption()//при попытке сломать запрашивает по 2 раза сдвиг и адрес для файла
+    public static void doDecryption()
     {
     writeFiles(setDecryptionCaesar(readFile(),getOffset()),getOriginalFileLocationAddressС());
     }
@@ -54,7 +53,7 @@ public class DecryptionByCaesarMethod extends FileOptions {
             if (!file.exists()) {throw new Exception();}
         } catch (Exception e) {
             System.out.println("Ошибка ввода. Вы ввели не корректный адрес. Попробуйте вновь " + e);
-            getOriginalFileLocationAddressС();
+            originalFileLocationAddress = getOriginalFileLocationAddressС();
         }
         return originalFileLocationAddress;
     }

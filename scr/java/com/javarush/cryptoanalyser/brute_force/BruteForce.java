@@ -3,7 +3,6 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class BruteForce extends KeyVerification {
-    public static final char[] ALPHABET = getALPHABET();
 
     public static void doBruteForceStepOne() {
         writeFiles(hackBruteForce(readFiles(getCiphertextFileAddress())),getCiphertextFileAddressThree());
@@ -12,7 +11,7 @@ public class BruteForce extends KeyVerification {
     public static void doBruteForceStepTwo() {
         writeResult(findResultBruteForce(readFilesSplitAfter(getCiphertextFileAddressTwo()),
                 readFilesSplitAfter(getRepresentativeFileAddress())),getResultAddress());
-    }
+    }// для удобства чтения лучше разнести по локальным переменным (напр. читаем файл, шифруем, записываем)?
 
     public static ArrayList<Character> hackBruteForce(ArrayList<Character> arrayFromFile) {
         ArrayList<Character> someTextArray = new ArrayList<>();
