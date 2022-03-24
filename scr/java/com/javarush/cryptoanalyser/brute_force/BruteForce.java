@@ -6,7 +6,7 @@ public class BruteForce extends KeyVerification {
     public static final char[] ALPHABET = getALPHABET();
 
     public static void doBruteForceStepOne() {
-        writeFiles(hackBruteForce(readFiles(getCiphertextFileAddress())),getCiphertextFileAddressTwo());
+        writeFiles(hackBruteForce(readFiles(getCiphertextFileAddress())),getCiphertextFileAddressThree());
     }
 
     public static void doBruteForceStepTwo() {

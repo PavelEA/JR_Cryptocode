@@ -108,6 +108,23 @@ public class FileOptions {
 
         return ciphertextFileAddress;
     }
+    public static String getCiphertextFileAddressThree(){
+        Scanner scannerForCip = new Scanner(System.in);
+        System.out.println("Введите адрес для сохранения подобранных вариантов расшифровки");
+        String ciphertextFileAddress = " ";
+        try {
+            ciphertextFileAddress = scannerForCip.nextLine();
+            File file1 = new File(ciphertextFileAddress).getAbsoluteFile();
+            if (!file1.exists()) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            System.out.println("Ошибка ввода. Вы ввели не корректный адрес для записи. Попробуйте вновь" + e);
+            getCiphertextFileAddress();
+        }
+
+        return ciphertextFileAddress;
+    }
 
     public static String getRepresentativeFileAddress(){
         Scanner scannerForRepresent = new Scanner(System.in);
